@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nursing School Navigator</title>
+  <title>Shonda's Nursing School Navigator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -13,9 +13,9 @@
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-mark">NS</div>
+        <div class="brand-mark">SN</div>
         <div>
-          <h1>Nursing School Navigator</h1>
+          <h1>Shonda's Nursing Navigator</h1>
           <p>First-Year Success Companion</p>
         </div>
       </div>
@@ -24,6 +24,7 @@
         <button class="nav-btn active" data-view="dashboard">🏠 Dashboard</button>
         <button class="nav-btn" data-view="courses">📚 Courses</button>
         <button class="nav-btn" data-view="assignments">📝 Assignments</button>
+        <button class="nav-btn" data-view="setup">✨ Semester Setup</button>
         <button class="nav-btn" data-view="exams">📅 Exam Prep</button>
         <button class="nav-btn" data-view="flashcards">🧠 Flashcards</button>
         <button class="nav-btn" data-view="vault">📓 Memory Vault</button>
@@ -49,7 +50,7 @@
         <div class="hero-card">
           <div>
             <p class="eyebrow">Week 3 of 16</p>
-            <h2>Keep the week simple.</h2>
+            <h2>Shonda, keep the week simple.</h2>
             <p>Focus on the next right task, not the whole semester at once.</p>
           </div>
           <div class="hero-stat">
@@ -89,11 +90,33 @@
           </article>
         </div>
 
+
+        <article class="panel prayer-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Faith Focus</p>
+              <h3>🙏 Prayer Corner</h3>
+            </div>
+            <span class="tag">Saved locally</span>
+          </div>
+          <div id="pinnedPrayer" class="pinned-prayer"></div>
+          <form id="prayerForm" class="note-form prayer-form">
+            <input type="hidden" id="prayerEditIndex" value="" />
+            <textarea id="prayerText" placeholder="Write a prayer for this season of nursing school..." required></textarea>
+            <div class="button-row">
+              <button type="submit">Save Prayer</button>
+              <button type="button" class="secondary-btn" id="cancelPrayerEdit">Cancel Edit</button>
+            </div>
+          </form>
+          <div id="prayerList" class="item-list"></div>
+        </article>
+
         <article class="panel">
           <h3>Quick Actions</h3>
           <div class="quick-actions">
             <button data-view="courses">📖 My Courses</button>
             <button data-view="assignments">📝 Assignments</button>
+            <button data-view="setup">✨ Semester Setup</button>
             <button data-view="exams">📅 Exam Prep</button>
             <button data-view="flashcards">🧠 Flashcards</button>
             <button data-view="vault">📓 Memory Vault</button>
@@ -122,6 +145,54 @@
             <button>Add Assignment</button>
           </form>
           <div id="assignmentList" class="item-list"></div>
+        </article>
+      </section>
+
+
+      <section id="setup" class="view">
+        <article class="panel setup-hero">
+          <p class="eyebrow">Semester Setup Wizard</p>
+          <h3>Paste Shonda's syllabus, course calendar, or assignment list.</h3>
+          <p class="muted">This starter importer looks for dates, course names, exams, quizzes, readings, and assignments. Shonda can review everything before adding it to the app.</p>
+        </article>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading">
+              <h3>1. Paste class material</h3>
+              <span class="tag">Text import</span>
+            </div>
+            <label class="field-label" for="importCourse">Default course</label>
+            <input type="text" id="importCourse" placeholder="Example: Fundamentals" />
+            <label class="field-label" for="importText">Syllabus or assignment list text</label>
+            <textarea id="importText" class="import-box" placeholder="Example:
+Fundamentals of Nursing
+Aug 26 - Read Chapter 3: Safety and Infection Control
+Sep 2 - Quiz: Vital Signs
+Sep 9 - Exam 1: Nursing Process and Safety"></textarea>
+            <div class="button-row">
+              <button id="sampleImport" class="secondary-btn">Use Sample</button>
+              <button id="parseImport">Preview Items</button>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-heading">
+              <h3>2. Review before adding</h3>
+              <span id="importCount" class="tag">0 found</span>
+            </div>
+            <div id="importPreview" class="item-list empty-state">Paste material and preview detected items.</div>
+            <button id="addImported" class="full-btn" disabled>Add Selected to Shonda's App</button>
+          </article>
+        </div>
+
+        <article class="panel">
+          <h3>What this version can catch</h3>
+          <div class="feature-grid">
+            <div><strong>Assignments</strong><p>Readings, worksheets, study guides, discussion boards, prep tasks.</p></div>
+            <div><strong>Assessments</strong><p>Exams, quizzes, tests, finals, and dosage-calc checks.</p></div>
+            <div><strong>Course clues</strong><p>Fundamentals, A&P, Pharmacology, Medical Terminology, or a typed default course.</p></div>
+          </div>
         </article>
       </section>
 
@@ -187,6 +258,7 @@
     <button class="nav-btn active" data-view="dashboard">🏠<span>Home</span></button>
     <button class="nav-btn" data-view="courses">📚<span>Courses</span></button>
     <button class="nav-btn" data-view="assignments">📝<span>Tasks</span></button>
+    <button class="nav-btn" data-view="setup">✨<span>Setup</span></button>
     <button class="nav-btn" data-view="flashcards">🧠<span>Cards</span></button>
     <button class="nav-btn" data-view="vault">📓<span>Vault</span></button>
   </nav>
