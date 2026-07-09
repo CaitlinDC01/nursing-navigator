@@ -172,3 +172,159 @@ input[type="range"] { accent-color: var(--sage); padding: 0; margin: 20px 0; }
   .panel { padding: 19px; }
   .list-item { flex-direction: column; }
 }
+
+.setup-hero {
+  background: linear-gradient(135deg, #ffffff, #e7f4f2);
+}
+.setup-hero h3 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  margin: 8px 0 10px;
+}
+.field-label {
+  display: block;
+  margin: 14px 0 7px;
+  color: var(--sage);
+  font-weight: 800;
+}
+.import-box {
+  min-height: 250px;
+  line-height: 1.5;
+}
+.button-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.button-row button, .full-btn, .secondary-btn {
+  border: 0;
+  border-radius: 14px;
+  padding: 13px 16px;
+  font-weight: 800;
+}
+.button-row button:not(.secondary-btn), .full-btn {
+  background: var(--sage);
+  color: white;
+}
+.secondary-btn {
+  background: #eef8f6;
+  color: var(--sage);
+  border: 1px solid var(--line);
+}
+.full-btn {
+  width: 100%;
+  margin-top: 16px;
+}
+.full-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.empty-state {
+  padding: 18px;
+  border: 1px dashed var(--line);
+  border-radius: 16px;
+  color: var(--muted);
+  background: #f7fbfa;
+}
+.import-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  padding: 16px;
+  background: #f7fbfa;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  cursor: pointer;
+}
+.import-item input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--sage);
+  margin-top: 5px;
+}
+.import-item h4 {
+  margin: 8px 0 4px;
+}
+.import-item p {
+  margin: 0;
+  color: var(--muted);
+}
+.import-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 800;
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.feature-grid div {
+  background: #f7fbfa;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+.feature-grid p {
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+@media (max-width: 920px) {
+  .bottom-nav { grid-template-columns: repeat(6, 1fr); }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+
+
+.prayer-panel {
+  background: linear-gradient(135deg, #ffffff, #f8fbfa);
+}
+.pinned-prayer {
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px;
+  background: #f7fbfa;
+  margin-bottom: 18px;
+}
+.prayer-label {
+  margin: 0 0 8px;
+  color: var(--teal);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.prayer-text {
+  margin: 0 0 10px;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+.prayer-form textarea {
+  min-height: 95px;
+}
+.prayer-item.is-pinned {
+  border-color: var(--teal);
+  background: #eef8f6;
+}
+.item-actions {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.item-actions .secondary-btn, .item-actions .icon-btn {
+  padding: 8px 10px;
+  border-radius: 12px;
+}
+
+@media (max-width: 620px) {
+  .item-actions {
+    justify-content: flex-start;
+  }
+}
