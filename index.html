@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nursing School Navigator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">NS</div>
+        <div>
+          <h1>Nursing School Navigator</h1>
+          <p>First-Year Success Companion</p>
+        </div>
+      </div>
+
+      <nav class="side-nav" aria-label="Primary navigation">
+        <button class="nav-btn active" data-view="dashboard">🏠 Dashboard</button>
+        <button class="nav-btn" data-view="courses">📚 Courses</button>
+        <button class="nav-btn" data-view="assignments">📝 Assignments</button>
+        <button class="nav-btn" data-view="exams">📅 Exam Prep</button>
+        <button class="nav-btn" data-view="flashcards">🧠 Flashcards</button>
+        <button class="nav-btn" data-view="vault">📓 Memory Vault</button>
+      </nav>
+
+      <div class="sidebar-card">
+        <p class="eyebrow">Coming Soon</p>
+        <h3>AI Study Coach</h3>
+        <p>Upload notes, get quizzes, and build study plans from lectures.</p>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="date-line" id="todayDate">Today</p>
+          <h2 id="viewTitle">Dashboard</h2>
+        </div>
+        <button class="profile-pill" id="resetDemo">Reset Demo</button>
+      </header>
+
+      <section id="dashboard" class="view active-view">
+        <div class="hero-card">
+          <div>
+            <p class="eyebrow">Week 3 of 16</p>
+            <h2>Keep the week simple.</h2>
+            <p>Focus on the next right task, not the whole semester at once.</p>
+          </div>
+          <div class="hero-stat">
+            <span id="daysUntilExam">8</span>
+            <small>days until next exam</small>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><span>📚</span><h3>4</h3><p>Active Courses</p></article>
+          <article class="stat-card"><span>📝</span><h3 id="dueThisWeek">3</h3><p>Due This Week</p></article>
+          <article class="stat-card"><span>📅</span><h3>1</h3><p>Exam Coming Soon</p></article>
+          <article class="stat-card"><span>🔥</span><h3 id="studyStreak">5</h3><p>Day Study Streak</p></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel">
+            <div class="panel-heading">
+              <h3>Today's Focus</h3>
+              <button class="text-btn" id="clearFocus">Clear checked</button>
+            </div>
+            <div id="focusList" class="check-list"></div>
+            <form id="focusForm" class="inline-form">
+              <input type="text" id="focusInput" placeholder="Add a focus task..." />
+              <button>Add</button>
+            </form>
+          </article>
+
+          <article class="panel">
+            <h3>Semester Progress</h3>
+            <div class="progress-copy">
+              <span>Week 3</span>
+              <span>16-week semester</span>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width: 19%"></div></div>
+            <p class="muted">Right now, the goal is rhythm: reading, recall, practice questions, repeat.</p>
+          </article>
+        </div>
+
+        <article class="panel">
+          <h3>Quick Actions</h3>
+          <div class="quick-actions">
+            <button data-view="courses">📖 My Courses</button>
+            <button data-view="assignments">📝 Assignments</button>
+            <button data-view="exams">📅 Exam Prep</button>
+            <button data-view="flashcards">🧠 Flashcards</button>
+            <button data-view="vault">📓 Memory Vault</button>
+            <button disabled>🤖 AI Tutor Soon</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="courses" class="view">
+        <div class="course-grid" id="courseGrid"></div>
+        <article class="panel detail-panel" id="courseDetail">
+          <p class="muted">Select a course to view sample priorities, study notes, and resources.</p>
+        </article>
+      </section>
+
+      <section id="assignments" class="view">
+        <article class="panel">
+          <div class="panel-heading">
+            <h3>Assignments</h3>
+            <span class="tag">Local demo data</span>
+          </div>
+          <form id="assignmentForm" class="stacked-form">
+            <input type="text" id="assignmentTitle" placeholder="Assignment name" required />
+            <input type="text" id="assignmentCourse" placeholder="Course" required />
+            <input type="date" id="assignmentDue" required />
+            <button>Add Assignment</button>
+          </form>
+          <div id="assignmentList" class="item-list"></div>
+        </article>
+      </section>
+
+      <section id="exams" class="view">
+        <div class="content-grid">
+          <article class="panel exam-card">
+            <p class="eyebrow">Next Exam</p>
+            <h3>Fundamentals Exam 1</h3>
+            <div class="countdown"><span id="examCountdown">8</span><small>days left</small></div>
+            <p class="muted">Topics: infection control, safety, vitals, nursing process, communication.</p>
+          </article>
+          <article class="panel">
+            <h3>Confidence Check</h3>
+            <label for="confidenceRange">How ready do you feel?</label>
+            <input type="range" id="confidenceRange" min="1" max="5" value="3" />
+            <p id="confidenceText" class="muted">Steady. Keep practicing questions and reviewing weak spots.</p>
+          </article>
+        </div>
+        <article class="panel">
+          <h3>Exam Prep Checklist</h3>
+          <div id="examChecklist" class="check-list"></div>
+        </article>
+      </section>
+
+      <section id="flashcards" class="view">
+        <article class="panel flashcard-panel">
+          <div class="panel-heading">
+            <h3>Flashcards</h3>
+            <span id="cardCounter" class="tag">1 / 6</span>
+          </div>
+          <button class="flashcard" id="flashcard">
+            <span class="flash-label">Question</span>
+            <strong id="flashText">Normal sodium level?</strong>
+            <small>Tap to flip</small>
+          </button>
+          <div class="flash-controls">
+            <button id="prevCard">Previous</button>
+            <button id="shuffleCard">Shuffle</button>
+            <button id="nextCard">Next</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="vault" class="view">
+        <article class="panel">
+          <div class="panel-heading">
+            <h3>Memory Vault</h3>
+            <span class="tag">Searchable learning journal</span>
+          </div>
+          <form id="noteForm" class="note-form">
+            <input type="text" id="noteTitle" placeholder="Title or concept" required />
+            <textarea id="noteBody" placeholder="Today I finally understood..." required></textarea>
+            <button>Save Note</button>
+          </form>
+          <input type="search" id="noteSearch" class="search-input" placeholder="Search notes by concept, class, or keyword..." />
+          <div id="noteList" class="item-list"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <button class="nav-btn active" data-view="dashboard">🏠<span>Home</span></button>
+    <button class="nav-btn" data-view="courses">📚<span>Courses</span></button>
+    <button class="nav-btn" data-view="assignments">📝<span>Tasks</span></button>
+    <button class="nav-btn" data-view="flashcards">🧠<span>Cards</span></button>
+    <button class="nav-btn" data-view="vault">📓<span>Vault</span></button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
