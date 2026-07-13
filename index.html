@@ -26,10 +26,11 @@
         <button class="nav-btn" data-view="setup">✦ Semester Setup</button>
         <button class="nav-btn" data-view="notebook">◇ Nursing Notebook</button>
         <button class="nav-btn" data-view="chamberlain">↗ Chamberlain Hub</button>
+        <button class="nav-btn" data-view="settings">⚙ Customize App</button>
       </nav>
       <div class="sidebar-card">
         <span class="mini-label">START DATE</span>
-        <strong>August 31, 2026</strong>
+        <strong id="sidebarStartDate">August 31, 2026</strong>
         <p>One session, one week, one task at a time.</p>
       </div>
     </aside>
@@ -44,7 +45,7 @@
         <article class="hero-card">
           <div>
             <p class="eyebrow" id="sessionLabel">Preparing for your first session</p>
-            <h2>Good morning, Shonda.</h2>
+            <h2 id="welcomeHeading">Good morning, Shonda.</h2>
             <p>Everything you need to stay calm, organized, and ready for nursing school.</p>
             <div class="hero-actions"><button data-view="setup">Set up classes</button><button class="secondary" data-view="study">Start studying</button></div>
           </div>
@@ -66,8 +67,8 @@
           </article>
 
           <article class="panel session-card">
-            <p class="eyebrow">CHAMBERLAIN START</p>
-            <h3>August 31, 2026</h3>
+            <p class="eyebrow" id="schoolStartLabel">CHAMBERLAIN START</p>
+            <h3 id="sessionStartDisplay">August 31, 2026</h3>
             <div class="progress-copy"><span id="phaseText">Preparation phase</span><span id="weekText">Before Week 1</span></div>
             <div class="progress-track"><div class="progress-fill" id="sessionProgressBar"></div></div>
             <p class="muted" id="sessionNote">Use this time to gather syllabi, confirm courses, and build a study rhythm.</p>
@@ -98,16 +99,31 @@
       </section>
 
       <section id="courses" class="view">
-        <article class="page-intro"><p class="eyebrow">YOUR PROGRAM</p><h3>Current Courses</h3><p>These are placeholders until Shonda shares her official course list or syllabi.</p></article>
-        <div class="course-grid" id="courseGrid"></div>
-        <article class="panel" id="courseDetail"><p class="muted">Select a course to view its starter plan.</p></article>
+        <article class="page-intro"><p class="eyebrow">YOUR PROGRAM</p><h3>Current Courses</h3><p>Add, edit, or archive courses anytime. No code changes needed.</p></article>
+        <div class="two-column">
+          <article class="panel">
+            <p class="eyebrow">COURSE MANAGER</p><h3 id="courseFormHeading">Add a Course</h3>
+            <form id="courseForm" class="stacked-form">
+              <input type="hidden" id="courseEditIndex">
+              <input id="courseName" placeholder="Course name" required>
+              <input id="courseCode" placeholder="Course code, e.g. NR-103">
+              <input id="courseInstructor" placeholder="Instructor name">
+              <input type="email" id="courseEmail" placeholder="Instructor email">
+              <input id="courseLink" placeholder="Canvas or course link">
+              <textarea id="courseDescription" placeholder="Short course description"></textarea>
+              <div class="button-row"><button>Save course</button><button type="button" class="secondary" id="cancelCourseEdit">Cancel</button></div>
+            </form>
+          </article>
+          <div class="span-wide"><div class="course-grid" id="courseGrid"></div></div>
+        </div>
+        <article class="panel" id="courseDetail"><p class="muted">Select a course to view or manage it.</p></article>
       </section>
 
       <section id="assignments" class="view">
         <div class="two-column">
           <article class="panel">
             <p class="eyebrow">ADD SOMETHING</p><h3>New Assignment</h3>
-            <form id="assignmentForm" class="stacked-form"><input id="assignmentTitle" placeholder="Assignment name" required><input id="assignmentCourse" placeholder="Course" required><select id="assignmentType"><option>Assignment</option><option>Discussion</option><option>Reading</option><option>Quiz</option><option>Exam</option></select><input type="date" id="assignmentDue" required><button>Add to app</button></form>
+            <form id="assignmentForm" class="stacked-form"><input type="hidden" id="assignmentEditIndex"><input id="assignmentTitle" placeholder="Assignment name" required><select id="assignmentCourse" required></select><select id="assignmentType"><option>Assignment</option><option>Discussion</option><option>Reading</option><option>Quiz</option><option>Exam</option></select><input type="date" id="assignmentDue" required><input type="time" id="assignmentTime"><select id="assignmentPriority"><option>Normal</option><option>High</option><option>Low</option></select><textarea id="assignmentNotes" placeholder="Notes or link"></textarea><div class="button-row"><button id="assignmentSubmit">Add to app</button><button type="button" class="secondary" id="cancelAssignmentEdit">Cancel</button></div></form>
           </article>
           <article class="panel span-wide">
             <div class="panel-heading"><div><p class="eyebrow">TIMELINE</p><h3>Assignments & Assessments</h3></div><span class="soft-tag" id="assignmentTotal">0 items</span></div>
@@ -183,10 +199,38 @@
         </div>
         <article class="panel note-card"><strong>Tip for Shonda</strong><p>Once her official logins and preferred pages are confirmed, these links can be updated to go directly to the exact tools she uses.</p></article>
       </section>
+
+      <section id="settings" class="view">
+        <article class="page-intro"><p class="eyebrow">MAKE IT YOURS</p><h3>Customize & Protect Your App</h3><p>Shonda can update her profile, school schedule, theme, and backups here.</p></article>
+        <div class="two-column">
+          <article class="panel">
+            <p class="eyebrow">PROFILE & PROGRAM</p><h3>Personal Settings</h3>
+            <form id="settingsForm" class="stacked-form">
+              <label class="field-label">Name</label><input id="settingName" required>
+              <label class="field-label">School</label><input id="settingSchool" required>
+              <label class="field-label">Program start date</label><input type="date" id="settingStartDate" required>
+              <label class="field-label">Session length</label><select id="settingSessionWeeks"><option value="8">8 weeks</option><option value="16">16 weeks</option><option value="12">12 weeks</option></select>
+              <label class="field-label">Accent color</label><select id="settingTheme"><option value="lavender">Lavender</option><option value="plum">Deep Plum</option><option value="neutral">Warm Neutral</option></select>
+              <button>Save settings</button>
+            </form>
+          </article>
+          <article class="panel">
+            <p class="eyebrow">BACKUP & RESTORE</p><h3>Keep Your Data Safe</h3>
+            <p class="muted">This version saves to this browser. Export a backup before changing devices or clearing browser data.</p>
+            <div class="stacked-actions"><button id="exportBackup">Download full backup</button><label class="file-button">Restore from backup<input type="file" id="importBackup" accept="application/json"></label><button class="secondary" id="exportAssignments">Download assignments CSV</button></div>
+            <div id="saveStatus" class="save-status">All changes save automatically.</div>
+          </article>
+          <article class="panel span-wide">
+            <p class="eyebrow">WEEKLY RESET</p><h3>Five-Minute Check-In</h3>
+            <div class="weekly-checklist"><label><input type="checkbox"> Review unfinished assignments</label><label><input type="checkbox"> Check the next 7 days</label><label><input type="checkbox"> Choose three priorities</label><label><input type="checkbox"> Update course materials</label><label><input type="checkbox"> Back up the app</label></div>
+            <button id="carryOverTasks">Add overdue tasks to Today's Focus</button>
+          </article>
+        </div>
+      </section>
     </main>
   </div>
 
-  <nav class="bottom-nav" aria-label="Mobile navigation"><button class="nav-btn active" data-view="dashboard">⌂<span>Home</span></button><button class="nav-btn" data-view="courses">▤<span>Courses</span></button><button class="nav-btn" data-view="assignments">✓<span>Tasks</span></button><button class="nav-btn" data-view="study">◷<span>Study</span></button><button class="nav-btn" data-view="setup">✦<span>Setup</span></button></nav>
+  <nav class="bottom-nav" aria-label="Mobile navigation"><button class="nav-btn active" data-view="dashboard">⌂<span>Home</span></button><button class="nav-btn" data-view="courses">▤<span>Courses</span></button><button class="nav-btn" data-view="assignments">✓<span>Tasks</span></button><button class="nav-btn" data-view="study">◷<span>Study</span></button><button class="nav-btn" data-view="setup">✦<span>Setup</span></button><button class="nav-btn" data-view="settings">⚙<span>Settings</span></button></nav>
   <script src="script.js"></script>
 </body>
 </html>
