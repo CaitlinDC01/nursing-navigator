@@ -3,266 +3,190 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shonda's Nursing School Navigator</title>
+  <meta name="theme-color" content="#6f5aa8" />
+  <title>Shonda's Chamberlain Companion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-mark">SN</div>
-        <div>
-          <h1>Shonda's Nursing Navigator</h1>
-          <p>First-Year Success Companion</p>
-        </div>
+        <div class="brand-mark">SC</div>
+        <div><h1>Shonda's Chamberlain Companion</h1><p>First-Year Nursing Hub</p></div>
       </div>
-
       <nav class="side-nav" aria-label="Primary navigation">
-        <button class="nav-btn active" data-view="dashboard">🏠 Dashboard</button>
-        <button class="nav-btn" data-view="courses">📚 Courses</button>
-        <button class="nav-btn" data-view="assignments">📝 Assignments</button>
-        <button class="nav-btn" data-view="setup">✨ Semester Setup</button>
-        <button class="nav-btn" data-view="exams">📅 Exam Prep</button>
-        <button class="nav-btn" data-view="flashcards">🧠 Flashcards</button>
-        <button class="nav-btn" data-view="vault">📓 Memory Vault</button>
+        <button class="nav-btn active" data-view="dashboard">⌂ Dashboard</button>
+        <button class="nav-btn" data-view="courses">▤ Courses</button>
+        <button class="nav-btn" data-view="assignments">✓ Assignments</button>
+        <button class="nav-btn" data-view="calendar">□ Calendar</button>
+        <button class="nav-btn" data-view="study">◷ Study Hub</button>
+        <button class="nav-btn" data-view="setup">✦ Semester Setup</button>
+        <button class="nav-btn" data-view="notebook">◇ Nursing Notebook</button>
+        <button class="nav-btn" data-view="chamberlain">↗ Chamberlain Hub</button>
       </nav>
-
       <div class="sidebar-card">
-        <p class="eyebrow">Coming Soon</p>
-        <h3>AI Study Coach</h3>
-        <p>Upload notes, get quizzes, and build study plans from lectures.</p>
+        <span class="mini-label">START DATE</span>
+        <strong>August 31, 2026</strong>
+        <p>One session, one week, one task at a time.</p>
       </div>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
-        <div>
-          <p class="date-line" id="todayDate">Today</p>
-          <h2 id="viewTitle">Dashboard</h2>
-        </div>
-        <button class="profile-pill" id="resetDemo">Reset Demo</button>
+        <div><p class="date-line" id="todayDate"></p><h2 id="viewTitle">Dashboard</h2></div>
+        <button class="ghost-btn" id="resetDemo">Reset demo</button>
       </header>
 
       <section id="dashboard" class="view active-view">
-        <div class="hero-card">
+        <article class="hero-card">
           <div>
-            <p class="eyebrow">Week 3 of 16</p>
-            <h2>Shonda, keep the week simple.</h2>
-            <p>Focus on the next right task, not the whole semester at once.</p>
+            <p class="eyebrow" id="sessionLabel">Preparing for your first session</p>
+            <h2>Good morning, Shonda.</h2>
+            <p>Everything you need to stay calm, organized, and ready for nursing school.</p>
+            <div class="hero-actions"><button data-view="setup">Set up classes</button><button class="secondary" data-view="study">Start studying</button></div>
           </div>
-          <div class="hero-stat">
-            <span id="daysUntilExam">8</span>
-            <small>days until next exam</small>
-          </div>
-        </div>
+          <div class="countdown-orb"><strong id="daysToStart">49</strong><span id="countdownLabel">days until classes</span></div>
+        </article>
 
         <div class="stats-grid">
-          <article class="stat-card"><span>📚</span><h3>4</h3><p>Active Courses</p></article>
-          <article class="stat-card"><span>📝</span><h3 id="dueThisWeek">3</h3><p>Due This Week</p></article>
-          <article class="stat-card"><span>📅</span><h3>1</h3><p>Exam Coming Soon</p></article>
-          <article class="stat-card"><span>🔥</span><h3 id="studyStreak">5</h3><p>Day Study Streak</p></article>
+          <article class="stat-card"><span class="stat-icon">▤</span><strong id="courseCount">3</strong><p>Starter courses</p></article>
+          <article class="stat-card"><span class="stat-icon">✓</span><strong id="dueCount">0</strong><p>Upcoming tasks</p></article>
+          <article class="stat-card"><span class="stat-icon">◷</span><strong id="studyMinutes">0</strong><p>Study minutes</p></article>
+          <article class="stat-card"><span class="stat-icon">◎</span><strong id="sessionProgress">0%</strong><p>Session progress</p></article>
         </div>
 
-        <div class="content-grid">
-          <article class="panel">
-            <div class="panel-heading">
-              <h3>Today's Focus</h3>
-              <button class="text-btn" id="clearFocus">Clear checked</button>
-            </div>
+        <div class="dashboard-grid">
+          <article class="panel span-2">
+            <div class="panel-heading"><div><p class="eyebrow">KEEP IT SIMPLE</p><h3>Today's Focus</h3></div><button class="text-btn" id="clearFocus">Clear checked</button></div>
             <div id="focusList" class="check-list"></div>
-            <form id="focusForm" class="inline-form">
-              <input type="text" id="focusInput" placeholder="Add a focus task..." />
-              <button>Add</button>
-            </form>
+            <form id="focusForm" class="inline-form"><input id="focusInput" placeholder="Add one clear task..." /><button>Add</button></form>
+          </article>
+
+          <article class="panel session-card">
+            <p class="eyebrow">CHAMBERLAIN START</p>
+            <h3>August 31, 2026</h3>
+            <div class="progress-copy"><span id="phaseText">Preparation phase</span><span id="weekText">Before Week 1</span></div>
+            <div class="progress-track"><div class="progress-fill" id="sessionProgressBar"></div></div>
+            <p class="muted" id="sessionNote">Use this time to gather syllabi, confirm courses, and build a study rhythm.</p>
+          </article>
+
+          <article class="panel prayer-panel">
+            <div class="panel-heading"><div><p class="eyebrow">PERSONAL SPACE</p><h3>Prayer Corner</h3></div><span class="soft-tag">Saved here</span></div>
+            <div id="pinnedPrayer" class="pinned-prayer"></div>
+            <details class="prayer-details">
+              <summary>Add or manage prayers</summary>
+              <form id="prayerForm" class="stacked-form"><input type="hidden" id="prayerEditIndex"><textarea id="prayerText" placeholder="Write a prayer for this season..." required></textarea><div class="button-row"><button>Save prayer</button><button type="button" class="secondary" id="cancelPrayerEdit">Cancel</button></div></form>
+              <div id="prayerList" class="item-list compact-list"></div>
+            </details>
           </article>
 
           <article class="panel">
-            <h3>Semester Progress</h3>
-            <div class="progress-copy">
-              <span>Week 3</span>
-              <span>16-week semester</span>
+            <div class="panel-heading"><div><p class="eyebrow">NEXT UP</p><h3>Upcoming</h3></div><button class="text-btn" data-view="assignments">View all</button></div>
+            <div id="upcomingPreview" class="timeline-list"></div>
+          </article>
+
+          <article class="panel span-2">
+            <div class="panel-heading"><div><p class="eyebrow">ONE-TAP ACCESS</p><h3>Quick Actions</h3></div></div>
+            <div class="quick-actions">
+              <button data-view="courses">▤ My Courses</button><button data-view="assignments">✓ Add Assignment</button><button data-view="calendar">□ Calendar</button><button data-view="study">◷ Study Session</button><button data-view="setup">✦ Import Syllabus</button><button data-view="chamberlain">↗ Chamberlain Links</button>
             </div>
-            <div class="progress-track"><div class="progress-fill" style="width: 19%"></div></div>
-            <p class="muted">Right now, the goal is rhythm: reading, recall, practice questions, repeat.</p>
           </article>
         </div>
-
-
-        <article class="panel prayer-panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">Faith Focus</p>
-              <h3>🙏 Prayer Corner</h3>
-            </div>
-            <span class="tag">Saved locally</span>
-          </div>
-          <div id="pinnedPrayer" class="pinned-prayer"></div>
-          <form id="prayerForm" class="note-form prayer-form">
-            <input type="hidden" id="prayerEditIndex" value="" />
-            <textarea id="prayerText" placeholder="Write a prayer for this season of nursing school..." required></textarea>
-            <div class="button-row">
-              <button type="submit">Save Prayer</button>
-              <button type="button" class="secondary-btn" id="cancelPrayerEdit">Cancel Edit</button>
-            </div>
-          </form>
-          <div id="prayerList" class="item-list"></div>
-        </article>
-
-        <article class="panel">
-          <h3>Quick Actions</h3>
-          <div class="quick-actions">
-            <button data-view="courses">📖 My Courses</button>
-            <button data-view="assignments">📝 Assignments</button>
-            <button data-view="setup">✨ Semester Setup</button>
-            <button data-view="exams">📅 Exam Prep</button>
-            <button data-view="flashcards">🧠 Flashcards</button>
-            <button data-view="vault">📓 Memory Vault</button>
-            <button disabled>🤖 AI Tutor Soon</button>
-          </div>
-        </article>
       </section>
 
       <section id="courses" class="view">
+        <article class="page-intro"><p class="eyebrow">YOUR PROGRAM</p><h3>Current Courses</h3><p>These are placeholders until Shonda shares her official course list or syllabi.</p></article>
         <div class="course-grid" id="courseGrid"></div>
-        <article class="panel detail-panel" id="courseDetail">
-          <p class="muted">Select a course to view sample priorities, study notes, and resources.</p>
-        </article>
+        <article class="panel" id="courseDetail"><p class="muted">Select a course to view its starter plan.</p></article>
       </section>
 
       <section id="assignments" class="view">
+        <div class="two-column">
+          <article class="panel">
+            <p class="eyebrow">ADD SOMETHING</p><h3>New Assignment</h3>
+            <form id="assignmentForm" class="stacked-form"><input id="assignmentTitle" placeholder="Assignment name" required><input id="assignmentCourse" placeholder="Course" required><select id="assignmentType"><option>Assignment</option><option>Discussion</option><option>Reading</option><option>Quiz</option><option>Exam</option></select><input type="date" id="assignmentDue" required><button>Add to app</button></form>
+          </article>
+          <article class="panel span-wide">
+            <div class="panel-heading"><div><p class="eyebrow">TIMELINE</p><h3>Assignments & Assessments</h3></div><span class="soft-tag" id="assignmentTotal">0 items</span></div>
+            <div id="assignmentList" class="timeline-list"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="calendar" class="view">
         <article class="panel">
-          <div class="panel-heading">
-            <h3>Assignments</h3>
-            <span class="tag">Local demo data</span>
-          </div>
-          <form id="assignmentForm" class="stacked-form">
-            <input type="text" id="assignmentTitle" placeholder="Assignment name" required />
-            <input type="text" id="assignmentCourse" placeholder="Course" required />
-            <input type="date" id="assignmentDue" required />
-            <button>Add Assignment</button>
-          </form>
-          <div id="assignmentList" class="item-list"></div>
+          <div class="calendar-header"><button class="icon-control" id="prevMonth">‹</button><div><p class="eyebrow">MONTH VIEW</p><h3 id="calendarMonth"></h3></div><button class="icon-control" id="nextMonth">›</button></div>
+          <div class="calendar-weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+          <div id="calendarGrid" class="calendar-grid"></div>
         </article>
       </section>
 
+      <section id="study" class="view">
+        <div class="study-layout">
+          <article class="panel study-builder">
+            <p class="eyebrow">BUILD A PLAN</p><h3>How much time do you have?</h3>
+            <div class="time-options" id="timeOptions"><button data-minutes="20">20 min</button><button data-minutes="45" class="selected">45 min</button><button data-minutes="60">1 hour</button><button data-minutes="90">90 min</button></div>
+            <label class="field-label">What are you studying?</label><input id="studyTopic" value="First-year nursing foundations" placeholder="Course or topic">
+            <button class="full-btn" id="buildStudyPlan">Build my study plan</button>
+            <div id="studyPlan" class="study-plan"></div>
+          </article>
+          <article class="panel timer-panel">
+            <p class="eyebrow">FOCUS TIMER</p><h3>Study Session</h3>
+            <div class="timer" id="timerDisplay">25:00</div>
+            <div class="timer-presets"><button data-timer="25" class="selected">25</button><button data-timer="50">50</button><button data-timer="90">90</button></div>
+            <div class="button-row centered"><button id="startTimer">Start</button><button class="secondary" id="resetTimer">Reset</button></div>
+            <p class="muted center">Completed time is added to your dashboard.</p>
+          </article>
+        </div>
+      </section>
 
       <section id="setup" class="view">
-        <article class="panel setup-hero">
-          <p class="eyebrow">Semester Setup Wizard</p>
-          <h3>Paste Shonda's syllabus, course calendar, or assignment list.</h3>
-          <p class="muted">This starter importer looks for dates, course names, exams, quizzes, readings, and assignments. Shonda can review everything before adding it to the app.</p>
-        </article>
-
-        <div class="content-grid">
+        <article class="page-intro"><p class="eyebrow">SEMESTER SETUP</p><h3>Turn class materials into an organized plan.</h3><p>Paste a syllabus, course calendar, or assignment list. Review every item before it enters the app.</p></article>
+        <div class="setup-steps"><span class="active">1 School</span><span>2 Material</span><span>3 Review</span></div>
+        <div class="two-column setup-columns">
           <article class="panel">
-            <div class="panel-heading">
-              <h3>1. Paste class material</h3>
-              <span class="tag">Text import</span>
-            </div>
-            <label class="field-label" for="importCourse">Default course</label>
-            <input type="text" id="importCourse" placeholder="Example: Fundamentals" />
-            <label class="field-label" for="importText">Syllabus or assignment list text</label>
-            <textarea id="importText" class="import-box" placeholder="Example:
-Fundamentals of Nursing
-Aug 26 - Read Chapter 3: Safety and Infection Control
-Sep 2 - Quiz: Vital Signs
-Sep 9 - Exam 1: Nursing Process and Safety"></textarea>
-            <div class="button-row">
-              <button id="sampleImport" class="secondary-btn">Use Sample</button>
-              <button id="parseImport">Preview Items</button>
-            </div>
+            <label class="field-label">School</label><div class="school-lock"><strong>Chamberlain University</strong><span>✓</span></div>
+            <label class="field-label">Program start</label><input value="August 31, 2026" disabled>
+            <label class="field-label">Default course</label><input id="importCourse" placeholder="Example: NR-103 Transition to Nursing">
+            <label class="field-label">Paste class material</label><textarea id="importText" class="import-box" placeholder="Paste syllabus dates, weekly schedule, assignments, quizzes, exams, and readings here..."></textarea>
+            <div class="button-row"><button type="button" class="secondary" id="sampleImport">Use sample</button><button type="button" id="parseImport">Preview items</button></div>
           </article>
-
           <article class="panel">
-            <div class="panel-heading">
-              <h3>2. Review before adding</h3>
-              <span id="importCount" class="tag">0 found</span>
-            </div>
-            <div id="importPreview" class="item-list empty-state">Paste material and preview detected items.</div>
-            <button id="addImported" class="full-btn" disabled>Add Selected to Shonda's App</button>
+            <div class="panel-heading"><div><p class="eyebrow">REVIEW</p><h3>Detected Items</h3></div><span class="soft-tag" id="importCount">0 found</span></div>
+            <div id="importPreview" class="empty-state">Paste material and select Preview Items.</div>
+            <button id="addImported" class="full-btn" disabled>Add selected items</button>
           </article>
         </div>
-
-        <article class="panel">
-          <h3>What this version can catch</h3>
-          <div class="feature-grid">
-            <div><strong>Assignments</strong><p>Readings, worksheets, study guides, discussion boards, prep tasks.</p></div>
-            <div><strong>Assessments</strong><p>Exams, quizzes, tests, finals, and dosage-calc checks.</p></div>
-            <div><strong>Course clues</strong><p>Fundamentals, A&P, Pharmacology, Medical Terminology, or a typed default course.</p></div>
-          </div>
-        </article>
       </section>
 
-      <section id="exams" class="view">
-        <div class="content-grid">
-          <article class="panel exam-card">
-            <p class="eyebrow">Next Exam</p>
-            <h3>Fundamentals Exam 1</h3>
-            <div class="countdown"><span id="examCountdown">8</span><small>days left</small></div>
-            <p class="muted">Topics: infection control, safety, vitals, nursing process, communication.</p>
-          </article>
-          <article class="panel">
-            <h3>Confidence Check</h3>
-            <label for="confidenceRange">How ready do you feel?</label>
-            <input type="range" id="confidenceRange" min="1" max="5" value="3" />
-            <p id="confidenceText" class="muted">Steady. Keep practicing questions and reviewing weak spots.</p>
-          </article>
-        </div>
+      <section id="notebook" class="view">
         <article class="panel">
-          <h3>Exam Prep Checklist</h3>
-          <div id="examChecklist" class="check-list"></div>
-        </article>
-      </section>
-
-      <section id="flashcards" class="view">
-        <article class="panel flashcard-panel">
-          <div class="panel-heading">
-            <h3>Flashcards</h3>
-            <span id="cardCounter" class="tag">1 / 6</span>
-          </div>
-          <button class="flashcard" id="flashcard">
-            <span class="flash-label">Question</span>
-            <strong id="flashText">Normal sodium level?</strong>
-            <small>Tap to flip</small>
-          </button>
-          <div class="flash-controls">
-            <button id="prevCard">Previous</button>
-            <button id="shuffleCard">Shuffle</button>
-            <button id="nextCard">Next</button>
-          </div>
-        </article>
-      </section>
-
-      <section id="vault" class="view">
-        <article class="panel">
-          <div class="panel-heading">
-            <h3>Memory Vault</h3>
-            <span class="tag">Searchable learning journal</span>
-          </div>
-          <form id="noteForm" class="note-form">
-            <input type="text" id="noteTitle" placeholder="Title or concept" required />
-            <textarea id="noteBody" placeholder="Today I finally understood..." required></textarea>
-            <button>Save Note</button>
-          </form>
-          <input type="search" id="noteSearch" class="search-input" placeholder="Search notes by concept, class, or keyword..." />
+          <div class="panel-heading"><div><p class="eyebrow">SEARCHABLE NOTES</p><h3>My Nursing Notebook</h3></div><span class="soft-tag">Aha moments + questions</span></div>
+          <form id="noteForm" class="note-form"><input id="noteTitle" placeholder="Title or concept" required><select id="noteCategory"><option>Study Note</option><option>Aha Moment</option><option>Question for Professor</option><option>Reminder</option></select><textarea id="noteBody" placeholder="Write what you want to remember..." required></textarea><button>Save note</button></form>
+          <input type="search" id="noteSearch" class="search-input" placeholder="Search notes...">
           <div id="noteList" class="item-list"></div>
         </article>
+      </section>
+
+      <section id="chamberlain" class="view">
+        <article class="page-intro"><p class="eyebrow">YOUR LAUNCHPAD</p><h3>Chamberlain Hub</h3><p>Keep the places you use most in one calm, easy-to-find space.</p></article>
+        <div class="link-grid">
+          <a href="https://community.chamberlain.edu" target="_blank" rel="noopener"><span>▣</span><strong>Student Portal</strong><small>Community login</small></a>
+          <a href="https://canvas.chamberlain.edu" target="_blank" rel="noopener"><span>▤</span><strong>Canvas</strong><small>Courses and assignments</small></a>
+          <a href="https://www.chamberlain.edu/academics/library" target="_blank" rel="noopener"><span>⌕</span><strong>Library</strong><small>Research and resources</small></a>
+          <a href="https://www.chamberlain.edu/student-services" target="_blank" rel="noopener"><span>◎</span><strong>Student Services</strong><small>Academic support</small></a>
+          <a href="https://www.chamberlain.edu/admissions/financial-aid" target="_blank" rel="noopener"><span>$</span><strong>Financial Aid</strong><small>Funding information</small></a>
+          <a href="https://www.chamberlain.edu/resources" target="_blank" rel="noopener"><span>↗</span><strong>Resources</strong><small>Official Chamberlain help</small></a>
+        </div>
+        <article class="panel note-card"><strong>Tip for Shonda</strong><p>Once her official logins and preferred pages are confirmed, these links can be updated to go directly to the exact tools she uses.</p></article>
       </section>
     </main>
   </div>
 
-  <nav class="bottom-nav" aria-label="Mobile navigation">
-    <button class="nav-btn active" data-view="dashboard">🏠<span>Home</span></button>
-    <button class="nav-btn" data-view="courses">📚<span>Courses</span></button>
-    <button class="nav-btn" data-view="assignments">📝<span>Tasks</span></button>
-    <button class="nav-btn" data-view="setup">✨<span>Setup</span></button>
-    <button class="nav-btn" data-view="flashcards">🧠<span>Cards</span></button>
-    <button class="nav-btn" data-view="vault">📓<span>Vault</span></button>
-  </nav>
-
+  <nav class="bottom-nav" aria-label="Mobile navigation"><button class="nav-btn active" data-view="dashboard">⌂<span>Home</span></button><button class="nav-btn" data-view="courses">▤<span>Courses</span></button><button class="nav-btn" data-view="assignments">✓<span>Tasks</span></button><button class="nav-btn" data-view="study">◷<span>Study</span></button><button class="nav-btn" data-view="setup">✦<span>Setup</span></button></nav>
   <script src="script.js"></script>
 </body>
 </html>
